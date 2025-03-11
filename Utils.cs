@@ -15,15 +15,15 @@ namespace LibSM64
                     force = 0,
                     type = (short)surfaceType,
                     terrain = (ushort)terrainType,
-                    v0x = (short)(Interop.SCALE_FACTOR * -vertices[tris[i  ]].x),
-                    v0y = (short)(Interop.SCALE_FACTOR *  vertices[tris[i  ]].y),
-                    v0z = (short)(Interop.SCALE_FACTOR *  vertices[tris[i  ]].z),
-                    v1x = (short)(Interop.SCALE_FACTOR * -vertices[tris[i+2]].x),
-                    v1y = (short)(Interop.SCALE_FACTOR *  vertices[tris[i+2]].y),
-                    v1z = (short)(Interop.SCALE_FACTOR *  vertices[tris[i+2]].z),
-                    v2x = (short)(Interop.SCALE_FACTOR * -vertices[tris[i+1]].x),
-                    v2y = (short)(Interop.SCALE_FACTOR *  vertices[tris[i+1]].y),
-                    v2z = (short)(Interop.SCALE_FACTOR *  vertices[tris[i+1]].z)
+                    v0x = (int)(Interop.SCALE_FACTOR * -vertices[tris[i  ]].x),
+                    v0y = (int)(Interop.SCALE_FACTOR *  vertices[tris[i  ]].y),
+                    v0z = (int)(Interop.SCALE_FACTOR *  vertices[tris[i  ]].z),
+                    v1x = (int)(Interop.SCALE_FACTOR * -vertices[tris[i+2]].x),
+                    v1y = (int)(Interop.SCALE_FACTOR *  vertices[tris[i+2]].y),
+                    v1z = (int)(Interop.SCALE_FACTOR *  vertices[tris[i+2]].z),
+                    v2x = (int)(Interop.SCALE_FACTOR * -vertices[tris[i+1]].x),
+                    v2y = (int)(Interop.SCALE_FACTOR *  vertices[tris[i+1]].y),
+                    v2z = (int)(Interop.SCALE_FACTOR *  vertices[tris[i+1]].z)
                 });
             }
         }
