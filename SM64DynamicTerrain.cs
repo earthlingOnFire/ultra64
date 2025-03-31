@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using MelonLoader;
+using SM64Mod;
+using System.Linq;
 
 namespace LibSM64
 {
@@ -23,7 +24,7 @@ namespace LibSM64
 
         void OnEnable()
         {
-            Melon<SM64Mod.Core>.Instance.RegisterSurfaceObject(this);
+            SM64Plugin.Instance.RegisterSurfaceObject(this);
 
             _position = transform.position;
             _rotation = transform.rotation;
@@ -34,14 +35,14 @@ namespace LibSM64
 
             var mc = GetComponent<MeshCollider>();
             var surfaces = Utils.GetSurfacesForMesh( transform.lossyScale, mc.sharedMesh, SurfaceType, TerrainType );
-            _surfaceObjectId = Interop.SurfaceObjectCreate( _position, _rotation, surfaces.ToArray() );
+            _surfaceObjectId = Interop.SurfaceObjectCreate(_position,_rotation,surfaces.ToArray());
         }
 
         void OnDisable()
         {
             if( Interop.isGlobalInit )
             {
-                Melon<SM64Mod.Core>.Instance.UnregisterSurfaceObject(this);
+                SM64Plugin.Instance.UnregisterSurfaceObject(this);
                 Interop.SurfaceObjectDelete( _surfaceObjectId );
             }
         }

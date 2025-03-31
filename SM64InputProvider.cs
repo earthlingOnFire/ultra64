@@ -1,5 +1,4 @@
 using UnityEngine;
-using MelonLoader;
 
 namespace LibSM64
 {

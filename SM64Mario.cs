@@ -1,13 +1,16 @@
 ﻿using System.Linq;
 using UnityEngine;
-using MelonLoader;
+using LibSM64;
+using SM64Mod;
+using System;
+
 
 namespace LibSM64
 {
     public class SM64Mario : MonoBehaviour
     {
         Material material = null;
-
+        public static SM64Plugin Instance;
         SM64InputProvider inputProvider;
 
         Vector3[][] positionBuffers;
@@ -40,10 +43,10 @@ namespace LibSM64
 
             if (marioId == -1)
             {
-                Melon<SM64Mod.Core>.Logger.Msg($"Failed to spawn Mario at {-initPos.x},{initPos.y},{initPos.z}");
+                SM64Plugin.Logger.LogMessage($"Failed to spawn Mario at {-initPos.x},{initPos.y},{initPos.z}");
                 throw new System.Exception($"Failed to spawn Mario at {-initPos.x},{initPos.y},{initPos.z}");
             }
-            Melon<SM64Mod.Core>.Logger.Msg($"Spawned Mario {marioId} at {-initPos.x},{initPos.y},{initPos.z}");
+            SM64Plugin.Logger.LogMessage($"Spawned Mario {marioId} at {-initPos.x},{initPos.y},{initPos.z}");
 
             inputProvider = GetComponent<SM64InputProvider>();
             if (inputProvider == null)
@@ -63,7 +66,7 @@ namespace LibSM64
             marioRendererObject.transform.localScale = new Vector3( -1, 1, 1 ) / Interop.SCALE_FACTOR;
             marioRendererObject.transform.localPosition = Vector3.zero;
 
-            Melon<SM64Mod.Core>.Logger.Msg("new vectors");
+            SM64Plugin.Logger.LogMessage("new vectors");
             lerpPositionBuffer = new Vector3[3 * Interop.SM64_GEO_MAX_TRIANGLES];
             lerpNormalBuffer = new Vector3[3 * Interop.SM64_GEO_MAX_TRIANGLES];
             positionBuffers = new Vector3[][] { new Vector3[3 * Interop.SM64_GEO_MAX_TRIANGLES], new Vector3[3 * Interop.SM64_GEO_MAX_TRIANGLES] };
@@ -82,7 +85,7 @@ namespace LibSM64
 
         void OnDisable()
         {
-            Melon<SM64Mod.Core>.Logger.Msg($"Disabled Mario {marioId}");
+            SM64Plugin.Logger.LogMessage($"Disabled Mario {marioId}");
 
             if ( marioRendererObject != null )
             {
