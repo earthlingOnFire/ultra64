@@ -228,7 +228,7 @@ namespace SM64Mod
                         mario.SetMaterial(material);
                         RegisterMario(mario);
 
-                        p.setActive(false);
+                        p.SetActive(false);
                     }
                     else
                         Logger.LogMessage("Failed to spawn Mario");
