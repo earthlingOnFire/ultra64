@@ -50,5 +50,16 @@ namespace LibSM64
 
             return surfaces.ToArray();
         }
+
+        public static string GetFullPath(GameObject gameObject) {
+          Transform transform = gameObject.transform;
+          string path = gameObject.name;
+          while (transform.parent != null) {
+            transform = transform.parent;
+            path = transform.name + "/" + path;
+          }
+
+          return path;
+        }
     }
 }
