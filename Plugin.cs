@@ -254,6 +254,7 @@ namespace SM64Mod
         Logger.LogMessage($"spawn {p.transform.position.x} {p.transform.position.y} {p.transform.position.z}");
         SM64InputGame input = marioObj.AddComponent<SM64InputGame>();
         SM64Mario mario = marioObj.AddComponent<SM64Mario>();
+        MarioCameraController camCtrl = marioObj.AddComponent<MarioCameraController>();
         if (mario.spawned)
         {
           mario.SetMaterial(material);
