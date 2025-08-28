@@ -114,21 +114,22 @@ namespace SM64Mod
 
       if (scene.buildIndex == -1)
       {
-        MeshCollider[] meshCols = GameObject.FindObjectsOfType<MeshCollider>();
-        BoxCollider[] boxCols = GameObject.FindObjectsOfType<BoxCollider>();
+        MeshCollider[] meshCols = GameObject.FindObjectsOfType<MeshCollider>(true);
+        BoxCollider[] boxCols = GameObject.FindObjectsOfType<BoxCollider>(true);
 
         for (int i = 0; i < meshCols.Length; i++)
         {
           MeshCollider c = meshCols[i];
-          if (c.isTrigger)
+
+          if (c.isTrigger || c.sharedMesh == null)
             continue;
 
           if (c.gameObject.GetComponent<Door>() != null) {
-            Logger.LogMessage($"Skipped {Utils.GetFullPath(c.gameObject)}");
+            /*Logger.LogMessage($"Skipped {Utils.GetFullPath(c.gameObject)}");*/
             continue;
           }
 
-          Logger.LogMessage($"Did not skip {Utils.GetFullPath(c.gameObject)}");
+          /*Logger.LogMessage($"Did not skip {Utils.GetFullPath(c.gameObject)}");*/
 
           GameObject surfaceObj = new GameObject($"SM64_SURFACE_MESH ({c.name})");
           MeshCollider surfaceMesh = surfaceObj.AddComponent<MeshCollider>();
@@ -155,15 +156,16 @@ namespace SM64Mod
         for (var i = 0; i < boxCols.Length; i++)
         {
           BoxCollider c = boxCols[i];
+
           if (c.isTrigger)
             continue;
 
           if (c.gameObject.GetComponent<Door>() != null) {
-            Logger.LogMessage($"Skipped {Utils.GetFullPath(c.gameObject)}");
+            /*Logger.LogMessage($"Skipped {Utils.GetFullPath(c.gameObject)}");*/
             continue;
           }
 
-          Logger.LogMessage($"Did not skip {Utils.GetFullPath(c.gameObject)}");
+          /*Logger.LogMessage($"Did not skip {Utils.GetFullPath(c.gameObject)}");*/
 
           GameObject surfaceObj = new GameObject($"SM64_SURFACE_BOX ({c.name})");
           MeshCollider surfaceMesh = surfaceObj.AddComponent<MeshCollider>();
